@@ -1,0 +1,173 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(120deg, #d0e8ff, #f2faff);
+  min-height: 100vh;
+  color: #333;
+  padding: 20px;
+  overflow-x: hidden;
+}
+
+/* Main layout container */
+.app-container {
+  display: flex;
+  justify-content: space-between; /* ⬅️➡️ pushes to left and right */
+  align-items: flex-start;
+  padding: 40px 60px;
+  width: 100%;
+  gap: 60px;
+}
+
+/* TABLE on the left */
+.list-container {
+  width: 60%;
+  background: linear-gradient(135deg, #ffffff, #eaf6ff);
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* FORM on the right */
+.form-container {
+  width: 35%;
+  background: linear-gradient(135deg, #ffffff, #f0f8ff);
+  padding: 35px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.1);
+}
+
+/* Section titles */
+h2 {
+  text-align: center;
+  color: #1a374d;
+  font-size: 26px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+/* Form styling */
+.form-style {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+input,
+textarea {
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  background-color: #fefefe;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #0077ff;
+  box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.15);
+  outline: none;
+}
+
+textarea {
+  resize: none;
+  height: 110px;
+}
+
+button {
+  background: linear-gradient(90deg, #0077ff, #00d4ff);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+
+button:hover {
+  transform: scale(1.02);
+  background: linear-gradient(90deg, #005bbb, #00bfff);
+}
+
+/* Table wrapper */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+
+th,
+td {
+  padding: 14px 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #0077ff;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+  background-color: #f0f8ff;
+}
+
+tr:hover {
+  background-color: #e1f5fe;
+}
+
+.delete-btn,
+.edit-btn {
+  padding: 7px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: background 0.2s ease;
+}
+
+.delete-btn {
+  background-color: #e74c3c;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
+}
+
+.edit-btn {
+  background-color: #2980b9;
+}
+
+.edit-btn:hover {
+  background-color: #1c5d90;
+}
+
+/* Responsive Design */
+@media (max-width: 1000px) {
+  .app-container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px;
+  }
+
+  .form-container,
+  .list-container {
+    width: 100%;
+  }
+}
