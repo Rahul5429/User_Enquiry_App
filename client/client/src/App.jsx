@@ -4,6 +4,9 @@ import Enquiry from './components/Enquiry';
 import EnquiryList from './components/EnquiryList';
 import './components/Enquiry.css';
 
+// Base API URL (works for local & production)
+const API_BASE_URL = import.meta.env.VITE_API_URL;
+
 function App() {
   const [enquiries, setEnquiries] = useState([]);
   const [editEnquiry, setEditEnquiry] = useState(null);
@@ -14,41 +17,55 @@ function App() {
 
   const fetchEnquiries = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/enquiry/list');
+      const res = await axios.get(`${API_BASE_URL}/api/enquiry/list`);
       setEnquiries(res.data);
     } catch (err) {
-      // Optionally handle error
+      console.error('Error fetching enquiries', err);
     }
   };
 
   const addEnquiry = async (form) => {
     try {
-      const res = await axios.post('http://localhost:5000/api/enquiry/insert', form);
+      const res = await axios.post(
+        `${API_BASE_URL}/api/enquiry/insert`,
+        form
+      );
       setEnquiries([...enquiries, res.data]);
     } catch (err) {
-      // Optionally handle error
+      console.error('Error adding enquiry', err);
     }
   };
 
   const updateEnquiry = async (id, form) => {
     try {
-      const res = await axios.put(`http://localhost:5000/api/enquiry/update/${id}`, form);
-      setEnquiries(enquiries.map((enq) => (enq._id === id ? res.data : enq)));
+      const res = await axios.put(
+        `${API_BASE_URL}/api/enquiry/update/${id}`,
+        form
+      );
+      setEnquiries(
+        enquiries.map((enq) =>
+          enq._id === id ? res.data : enq
+        )
+      );
       setEditEnquiry(null);
     } catch (err) {
-      // Optionally handle error
+      console.error('Error updating enquiry', err);
     }
   };
 
   const deleteEnquiry = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/enquiry/delete/${id}`);
-      setEnquiries(enquiries.filter((enq) => enq._id !== id));
+      await axios.delete(
+        `${API_BASE_URL}/api/enquiry/delete/${id}`
+      );
+      setEnquiries(
+        enquiries.filter((enq) => enq._id !== id)
+      );
       if (editEnquiry && editEnquiry._id === id) {
         setEditEnquiry(null);
       }
     } catch (err) {
-      // Optionally handle error
+      console.error('Error deleting enquiry', err);
     }
   };
 
@@ -70,6 +87,7 @@ function App() {
           clearEdit={clearEdit}
         />
       </div>
+
       <div className="enquiry-table-container">
         <EnquiryList
           enquiries={enquiries}
